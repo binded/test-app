@@ -12,7 +12,10 @@ DOCKER_RUN_BASE = docker run \
 
 DOCKER_RUN := $(DOCKER_RUN_BASE) $(CI_IMAGE)
 
-all:
+clean:
+	rm Dockerfile*
+
+all: clean
 	$(DOCKER_RUN) make build
 	$(DOCKER_RUN) make run-test
 	$(DOCKER_RUN) make push
@@ -21,3 +24,7 @@ all:
 .PHONY: run-interactive
 run-interactive:
 	$(DOCKER_RUN_BASE) -it $(CI_IMAGE) make run-interactive
+
+.PHONY: run-interactive
+run-interactive-build:
+	$(DOCKER_RUN_BASE) -it $(CI_IMAGE) make run-interactive-build
