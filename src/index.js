@@ -19,7 +19,11 @@ export default () => {
   })
 
 
-  const start = promisify(cb => app.listen(config.port, cb))
+  const start = promisify(cb => {
+    const server = app.listen(config.port, (err) => {
+      cb(err, server)
+    })
+  })
 
   return { start, app }
 }

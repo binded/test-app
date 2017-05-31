@@ -20,6 +20,6 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: {{ .Values.app }}
+          serviceName: {{ $.Values.app }}
           servicePort: 80
   {{- end }}

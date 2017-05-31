@@ -1,3 +1,5 @@
 node_modules/
 lib/
 .envrc
+Dockerfile
+Dockerfile.build
