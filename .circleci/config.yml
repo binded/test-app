@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    docker:
+      # custom image -- includes helm, kubectl, terraform, etc.
+      - image: binded/ci:1.0.0
+    working_directory: /ci
+    steps:
+      - checkout:
+          path: /ci/repo
+      - run: make build
+      - run: make test
+      - run: make push
+      - deploy:
+          command: |
+            make deploy

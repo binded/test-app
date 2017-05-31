@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: binded/ci:1.0.0 # custom image -- includes helm, kubectl, terraform, etc.
+    working_directory: /ci
+    steps:
+      - checkout:
+          path: /ci/repo
+      - restore_cache:
+          # cache by branch + package.json, by branch, and then master
+          keys:
+            - node-modules
+            # - node-modules-{{ checksum "package.json" }}
+      - run: make build
+      # TODO: extract node_modules from build image
+      - save_cache:
+          key: node-modules
+          paths:
+            - ~/.cache
+      - run: make test
+      - deploy:
+          command: |
+            make deploy
+
