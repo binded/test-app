@@ -6,6 +6,7 @@ jobs:
       - image: binded/ci:1.0.0
     working_directory: /ci
     steps:
+      - setup_remote_docker
       - checkout:
           path: /ci/repo
       - run: make build
