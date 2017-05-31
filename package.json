@@ -11,7 +11,7 @@
     "start": "node lib/bin/server.js"
   },
   "author": "Oli Lalonde <olalonde@gmail.com> (https://syskall.com/)",
-  "license": "ISC",
+  "license": "Unlicense",
   "dependencies": {
     "axios": "^0.16.1",
     "es6-promisify": "^5.0.0",

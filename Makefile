@@ -14,7 +14,7 @@ DOCKER_RUN := $(DOCKER_RUN_BASE) $(CI_IMAGE)
 
 all:
 	$(DOCKER_RUN) make build
-	$(DOCKER_RUN) make test
+	$(DOCKER_RUN) make run-test
 	$(DOCKER_RUN) make push
 	$(DOCKER_RUN) make deploy
 
