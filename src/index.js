@@ -9,12 +9,12 @@ export default () => {
 
   const app = express()
   app.set('config', config)
-  app.get('/proxy', async () => {
+  app.get('/proxy', async (req, res) => {
     const response = await axios.get({ url: req.query.url })
     res.send(response.data)
   })
 
-  app.get('/health', () => {
+  app.get('/health', (req, res) => {
     res.send({ ok: true })
   })
 
