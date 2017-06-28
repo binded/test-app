@@ -3,3 +3,4 @@ lib/
 .envrc
 Dockerfile
 Dockerfile.build
+.cache

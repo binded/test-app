@@ -2,16 +2,22 @@ version: 2
 jobs:
   build:
     docker:
-      # custom image -- includes helm, kubectl, terraform, etc.
-      - image: binded/ci:1.0.0
-    working_directory: /ci
+      - image: binded/node-ci:base
+    working_directory: /ci/project
+    environment:
+      - BASH_ENV: .circleci/bash_env.sh
     steps:
       - setup_remote_docker
-      - checkout:
-          path: /ci/repo
-      - run: make build
-      - run: make test
-      - run: make push
+      - checkout
+      - restore_cache:
+          keys:
+            - node-modules
+      - run: build
+      - save_cache:
+          key: node-modules
+          paths:
+            - node_modules
+      - run: run-test
+      - run: release
       - deploy:
-          command: |
-            make deploy
+          command: deploy
