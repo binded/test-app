@@ -19,7 +19,8 @@ spec:
   - host: {{ . | quote }}
     http:
       paths:
-      - backend:
+      - path: /
+        backend:
           serviceName: {{ $.Values.app }}
           servicePort: 80
   {{- end }}
